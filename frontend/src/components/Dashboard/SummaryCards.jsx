@@ -1,6 +1,6 @@
 import React from 'react';
 import { DollarSign, TrendingUp, TrendingDown } from 'lucide-react';
-import Card from '../common/Card';
+import Card from '../common/Card.jsx';
 import '../../styles/SummaryCards.css';
 
 const SummaryCards = ({ insights }) => {

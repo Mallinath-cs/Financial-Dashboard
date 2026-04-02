@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Modal from '../common/Modal';
-import Button from '../common/Button';
+import Modal from '../common/Modal.jsx';
+import Button from '../common/Button.jsx';
 import { CATEGORIES, TRANSACTION_TYPES } from '../../utils/constants';
 import '../../styles/TransactionModal.css';
 

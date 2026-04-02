@@ -1,6 +1,6 @@
 import React from 'react';
 import { Edit2, Trash2 } from 'lucide-react';
-import Badge from '../common/Badge';
+import Badge from '../common/Badge.jsx';
 import { ROLES } from '../../utils/constants';
 import '../../styles/TransactionList.css';
 

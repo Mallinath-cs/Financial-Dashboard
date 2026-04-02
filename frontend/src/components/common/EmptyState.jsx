@@ -1,6 +1,6 @@
 import React from 'react';
 import { Inbox } from 'lucide-react';
-import Button from './Button';
+import Button from './Button.jsx';
 import '../../styles/EmptyState.css';
 
 const EmptyState = ({ title, description, actionLabel, onAction, testId }) => {

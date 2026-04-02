@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, Moon, Sun, Download } from 'lucide-react';
 import { useApp } from './context/AppContext';
 import { ROLES } from './utils/constants';
+import { exportToCSV, exportToJSON } from './utils/export';
 import apiService from './services/api';
-import SummaryCards from './components/Dashboard/SummaryCards';
-import Charts from './components/Dashboard/Charts';
-import Insights from './components/Insights/Insights';
-import TransactionFilters from './components/Transactions/TransactionFilters';
-import TransactionList from './components/Transactions/TransactionList';
-import TransactionModal from './components/Transactions/TransactionModal';
-import EmptyState from './components/common/EmptyState';
-import Button from './components/common/Button';
+import SummaryCards from './components/Dashboard/SummaryCards.jsx';
+import Charts from './components/Dashboard/Charts.jsx';
+import Insights from './components/Insights/Insights.jsx';
+import TransactionFilters from './components/Transactions/TransactionFilters.jsx';
+import TransactionList from './components/Transactions/TransactionList.jsx';
+import TransactionModal from './components/Transactions/TransactionModal.jsx';
+import EmptyState from './components/common/EmptyState.jsx';
+import Button from './components/common/Button.jsx';
 import './App.css';
 
 function App() {
-  const { role, setRole, transactions, insights, refreshData } = useApp();
+  const { role, setRole, transactions, insights, refreshData, theme, toggleTheme } = useApp();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("date");
   const [filterType, setFilterType] = useState("all");
   const [showModal, setShowModal] = useState(false);
   const [editingTransaction, setEditingTransaction] = useState(null);
+  const [showExportMenu, setShowExportMenu] = useState(false);
 
   const handleAddOrUpdateTransaction = async (formData) => {
     try {
@@ -56,6 +58,15 @@ function App() {
     setEditingTransaction(null);
   };
 
+  const handleExport = (format) => {
+    if (format === 'csv') {
+      exportToCSV(filteredTransactions);
+    } else if (format === 'json') {
+      exportToJSON(filteredTransactions);
+    }
+    setShowExportMenu(false);
+  };
+
   // Filter and sort transactions
   const filteredTransactions = transactions
     .filter(t => {
@@ -86,17 +97,27 @@ function App() {
       {/* Header */}
       <header className="app-header">
         <h1>Financial Dashboard</h1>
-        <div className="role-toggle" data-testid="role-toggle">
-          <label htmlFor="role-select">Role:</label>
-          <select
-            id="role-select"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            data-testid="role-select"
+        <div className="header-controls">
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            data-testid="theme-toggle"
+            title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
           >
-            <option value={ROLES.ADMIN}>{ROLES.ADMIN}</option>
-            <option value={ROLES.VIEWER}>{ROLES.VIEWER}</option>
-          </select>
+            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
+          <div className="role-toggle" data-testid="role-toggle">
+            <label htmlFor="role-select">Role:</label>
+            <select
+              id="role-select"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              data-testid="role-select"
+            >
+              <option value={ROLES.ADMIN}>{ROLES.ADMIN}</option>
+              <option value={ROLES.VIEWER}>{ROLES.VIEWER}</option>
+            </select>
+          </div>
         </div>
       </header>
 
@@ -123,16 +144,40 @@ function App() {
       <div className="transactions-section">
         <div className="section-header">
           <h2>Transactions</h2>
-          {role === ROLES.ADMIN && (
-            <Button
-              variant="primary"
-              onClick={() => setShowModal(true)}
-              testId="add-transaction-btn"
-            >
-              <Plus size={16} />
-              Add Transaction
-            </Button>
-          )}
+          <div className="header-actions">
+            {!isEmpty && (
+              <div className="export-menu">
+                <Button
+                  variant="secondary"
+                  onClick={() => setShowExportMenu(!showExportMenu)}
+                  testId="export-btn"
+                >
+                  <Download size={16} />
+                  Export
+                </Button>
+                {showExportMenu && (
+                  <div className="export-dropdown" data-testid="export-dropdown">
+                    <button onClick={() => handleExport('csv')} data-testid="export-csv-btn">
+                      Export as CSV
+                    </button>
+                    <button onClick={() => handleExport('json')} data-testid="export-json-btn">
+                      Export as JSON
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+            {role === ROLES.ADMIN && (
+              <Button
+                variant="primary"
+                onClick={() => setShowModal(true)}
+                testId="add-transaction-btn"
+              >
+                <Plus size={16} />
+                Add Transaction
+              </Button>
+            )}
+          </div>
         </div>
 
         <TransactionFilters

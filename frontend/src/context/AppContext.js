@@ -17,6 +17,19 @@ export const AppProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
   const [insights, setInsights] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme || 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+  };
 
   const fetchTransactions = async () => {
     try {
@@ -55,7 +68,9 @@ export const AppProvider = ({ children }) => {
     transactions,
     insights,
     loading,
-    refreshData
+    refreshData,
+    theme,
+    toggleTheme
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
