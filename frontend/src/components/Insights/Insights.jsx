@@ -1,5 +1,6 @@
 import React from 'react';
 import { Lightbulb, TrendingUp } from 'lucide-react';
+import { formatCurrency } from '../../utils/export';
 import '../../styles/Insights.css';
 
 const Insights = ({ insights }) => {
@@ -21,7 +22,7 @@ const Insights = ({ insights }) => {
               {insights.highest_spending_category.category}
             </div>
             <div className="insight-description">
-              ${insights.highest_spending_category.amount.toFixed(2)} spent this period
+              {formatCurrency(insights.highest_spending_category.amount)} spent this period
             </div>
           </div>
         )}
@@ -33,7 +34,7 @@ const Insights = ({ insights }) => {
               Period Comparison
             </h3>
             <div className="insight-value">
-              ${Math.abs(insights.monthly_comparison.change).toFixed(2)}
+              {formatCurrency(Math.abs(insights.monthly_comparison.change))}
             </div>
             <div className="insight-description">
               {insights.monthly_comparison.change >= 0 ? "Up" : "Down"} from previous period

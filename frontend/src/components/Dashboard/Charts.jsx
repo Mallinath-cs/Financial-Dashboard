@@ -82,7 +82,7 @@ const Charts = ({ transactions, categoryData }) => {
       y: {
         beginAtZero: true,
         ticks: {
-          callback: (value) => `$${value.toFixed(0)}`
+          callback: (value) => `₹${value.toLocaleString('en-IN')}`
         }
       },
       x: {
@@ -131,7 +131,7 @@ const Charts = ({ transactions, categoryData }) => {
           label: (context) => {
             const label = context.label || "";
             const value = context.parsed || 0;
-            return `${label}: $${value.toFixed(2)}`;
+            return `${label}: ₹${value.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
           }
         }
       }

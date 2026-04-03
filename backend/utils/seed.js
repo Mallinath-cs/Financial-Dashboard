@@ -4,11 +4,10 @@ const getSeedData = () => {
   const today = new Date();
   
   return [
-    // Income transactions
     {
       id: uuidv4(),
       date: new Date(today.getFullYear(), today.getMonth(), 1).toISOString().split('T')[0],
-      amount: 5000,
+      amount: 400000,
       category: 'Savings',
       type: 'income',
       description: 'Monthly Salary',
@@ -17,17 +16,16 @@ const getSeedData = () => {
     {
       id: uuidv4(),
       date: new Date(today.getFullYear(), today.getMonth(), 15).toISOString().split('T')[0],
-      amount: 500,
+      amount: 40000,
       category: 'Other',
       type: 'income',
       description: 'Freelance Project',
       created_at: new Date().toISOString()
     },
-    // Expense transactions
     {
       id: uuidv4(),
       date: new Date(today.getFullYear(), today.getMonth(), 2).toISOString().split('T')[0],
-      amount: 1200,
+      amount: 96000,
       category: 'Housing',
       type: 'expense',
       description: 'Monthly Rent',
@@ -36,7 +34,7 @@ const getSeedData = () => {
     {
       id: uuidv4(),
       date: new Date(today.getFullYear(), today.getMonth(), 5).toISOString().split('T')[0],
-      amount: 350,
+      amount: 28000,
       category: 'Food',
       type: 'expense',
       description: 'Grocery Shopping',
@@ -45,16 +43,16 @@ const getSeedData = () => {
     {
       id: uuidv4(),
       date: new Date(today.getFullYear(), today.getMonth(), 8).toISOString().split('T')[0],
-      amount: 180,
+      amount: 14400,
       category: 'Transportation',
       type: 'expense',
-      description: 'Gas and Metro Card',
+      description: 'Petrol and Metro Card',
       created_at: new Date().toISOString()
     },
     {
       id: uuidv4(),
       date: new Date(today.getFullYear(), today.getMonth(), 10).toISOString().split('T')[0],
-      amount: 120,
+      amount: 9600,
       category: 'Utilities',
       type: 'expense',
       description: 'Electric Bill',
@@ -63,7 +61,7 @@ const getSeedData = () => {
     {
       id: uuidv4(),
       date: new Date(today.getFullYear(), today.getMonth(), 12).toISOString().split('T')[0],
-      amount: 250,
+      amount: 20000,
       category: 'Food',
       type: 'expense',
       description: 'Restaurants',
@@ -72,7 +70,7 @@ const getSeedData = () => {
     {
       id: uuidv4(),
       date: new Date(today.getFullYear(), today.getMonth(), 14).toISOString().split('T')[0],
-      amount: 450,
+      amount: 36000,
       category: 'Shopping',
       type: 'expense',
       description: 'Clothing',
@@ -81,7 +79,7 @@ const getSeedData = () => {
     {
       id: uuidv4(),
       date: new Date(today.getFullYear(), today.getMonth(), 16).toISOString().split('T')[0],
-      amount: 80,
+      amount: 6400,
       category: 'Entertainment',
       type: 'expense',
       description: 'Movie Tickets',
@@ -90,7 +88,7 @@ const getSeedData = () => {
     {
       id: uuidv4(),
       date: new Date(today.getFullYear(), today.getMonth(), 18).toISOString().split('T')[0],
-      amount: 200,
+      amount: 16000,
       category: 'Healthcare',
       type: 'expense',
       description: 'Doctor Visit',
@@ -99,7 +97,7 @@ const getSeedData = () => {
     {
       id: uuidv4(),
       date: new Date(today.getFullYear(), today.getMonth(), 20).toISOString().split('T')[0],
-      amount: 150,
+      amount: 12000,
       category: 'Food',
       type: 'expense',
       description: 'Groceries',
@@ -108,7 +106,7 @@ const getSeedData = () => {
     {
       id: uuidv4(),
       date: new Date(today.getFullYear(), today.getMonth(), 22).toISOString().split('T')[0],
-      amount: 95,
+      amount: 7600,
       category: 'Utilities',
       type: 'expense',
       description: 'Internet Bill',
@@ -117,7 +115,7 @@ const getSeedData = () => {
     {
       id: uuidv4(),
       date: new Date(today.getFullYear(), today.getMonth(), 25).toISOString().split('T')[0],
-      amount: 300,
+      amount: 24000,
       category: 'Education',
       type: 'expense',
       description: 'Online Course',

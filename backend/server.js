@@ -10,20 +10,17 @@ const insightRoutes = require('./routes/insights');
 const app = express();
 const PORT = process.env.PORT || 8001;
 
-// Middleware
 app.use(cors({
   origin: process.env.CORS_ORIGINS || '*',
   credentials: true
 }));
 app.use(express.json());
 
-// Initialize database and start server
 const startServer = async () => {
   try {
     const db = await connectDB();
     await seedDatabase(db);
 
-    // Routes
     app.get('/api', (req, res) => {
       res.json({ message: 'Financial Dashboard API' });
     });
@@ -31,7 +28,6 @@ const startServer = async () => {
     app.use('/api/transactions', transactionRoutes);
     app.use('/api/insights', insightRoutes);
 
-    // Start server
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`✓ Server running on http://0.0.0.0:${PORT}`);
     });

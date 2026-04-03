@@ -1,3 +1,7 @@
+export const formatCurrency = (amount) => {
+  return `₹${amount.toLocaleString('en-IN', { maximumFractionDigits: 2, minimumFractionDigits: 2 })}`;
+};
+
 export const exportToCSV = (transactions) => {
   if (!transactions || transactions.length === 0) {
     alert('No transactions to export');

@@ -20,7 +20,6 @@ class InsightController {
         });
       }
 
-      // Calculate totals
       const total_income = transactions
         .filter(t => t.type === 'income')
         .reduce((sum, t) => sum + t.amount, 0);
@@ -31,7 +30,6 @@ class InsightController {
 
       const total_balance = total_income - total_expense;
 
-      // Category breakdown for expenses
       const categoryTotals = {};
       transactions
         .filter(t => t.type === 'expense')
@@ -44,7 +42,6 @@ class InsightController {
         amount
       }));
 
-      // Highest spending category
       let highest_spending_category = null;
       if (category_breakdown.length > 0) {
         const highest = category_breakdown.reduce((max, cat) =>
@@ -53,7 +50,6 @@ class InsightController {
         highest_spending_category = highest;
       }
 
-      // Monthly comparison
       const now = new Date();
       const currentMonthStart = new Date(now.getFullYear(), now.getMonth(), 1);
 

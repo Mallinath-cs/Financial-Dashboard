@@ -1,6 +1,7 @@
 import React from 'react';
 import { DollarSign, TrendingUp, TrendingDown } from 'lucide-react';
 import Card from '../common/Card.jsx';
+import { formatCurrency } from '../../utils/export';
 import '../../styles/SummaryCards.css';
 
 const SummaryCards = ({ insights }) => {
@@ -14,7 +15,7 @@ const SummaryCards = ({ insights }) => {
           <div className="card-label">Total Balance</div>
         </div>
         <div className="card-value">
-          ${insights?.total_balance?.toFixed(2) || "0.00"}
+          {formatCurrency(insights?.total_balance || 0)}
         </div>
       </Card>
 
@@ -26,7 +27,7 @@ const SummaryCards = ({ insights }) => {
           <div className="card-label">Total Income</div>
         </div>
         <div className="card-value">
-          ${insights?.total_income?.toFixed(2) || "0.00"}
+          {formatCurrency(insights?.total_income || 0)}
         </div>
       </Card>
 
@@ -38,7 +39,7 @@ const SummaryCards = ({ insights }) => {
           <div className="card-label">Total Expenses</div>
         </div>
         <div className="card-value">
-          ${insights?.total_expense?.toFixed(2) || "0.00"}
+          {formatCurrency(insights?.total_expense || 0)}
         </div>
       </Card>
     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Edit2, Trash2 } from 'lucide-react';
 import Badge from '../common/Badge.jsx';
 import { ROLES } from '../../utils/constants';
+import { formatCurrency } from '../../utils/export';
 import '../../styles/TransactionList.css';
 
 const TransactionList = ({ transactions, role, onEdit, onDelete }) => {
@@ -33,8 +34,8 @@ const TransactionList = ({ transactions, role, onEdit, onDelete }) => {
                 className={`amount-${transaction.type}`}
                 data-testid="transaction-amount"
               >
-                {transaction.type === "income" ? "+" : "-"}$
-                {transaction.amount.toFixed(2)}
+                {transaction.type === "income" ? "+" : "-"}
+                {formatCurrency(transaction.amount)}
               </span>
             </td>
             {role === ROLES.ADMIN && (

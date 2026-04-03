@@ -6,7 +6,7 @@ class Transaction {
     this.date = data.date;
     this.amount = parseFloat(data.amount);
     this.category = data.category;
-    this.type = data.type; // 'income' or 'expense'
+    this.type = data.type;
     this.description = data.description || '';
     this.created_at = data.created_at || new Date().toISOString();
   }
