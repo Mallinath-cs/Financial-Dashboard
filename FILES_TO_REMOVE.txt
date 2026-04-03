@@ -1,0 +1,150 @@
+# Files Safe to Remove (Project will still work)
+
+## Root Directory (/app/)
+FEATURES.md                          # Documentation file
+PROJECT_STRUCTURE.md                 # Documentation file
+README.md                            # Documentation file
+design_guidelines.json               # Design documentation (already implemented)
+test_result.md                       # Test results file
+.gitignore                          # Git configuration
+.gitconfig                          # Git configuration
+.git/                               # Entire Git repository (if not using git)
+yarn.lock                           # Root yarn lock (not needed)
+
+## Directories to Remove
+/app/.git/                          # Git repository
+/app/.ruff_cache/                   # Python linting cache (not needed for Node.js)
+/app/memory/                        # Test credentials/memory folder
+/app/test_reports/                  # Testing agent reports
+/app/tests/                         # Test directory
+/app/.emergent/                     # Emergent platform specific (optional)
+
+## Backend (/app/backend/)
+# DO NOT REMOVE THESE - ALL ARE REQUIRED:
+# - .env
+# - package.json
+# - yarn.lock
+# - server.js
+# - /config/
+# - /models/
+# - /controllers/
+# - /routes/
+# - /utils/
+# - /node_modules/ (can remove and reinstall with 'yarn install')
+
+## Frontend (/app/frontend/)
+.gitignore                          # Git configuration
+README.md                           # Documentation
+components.json                     # Shadcn config (already configured)
+jsconfig.json                       # JS config (optional)
+/plugins/                           # Build plugins folder (optional)
+
+# DO NOT REMOVE THESE - ALL ARE REQUIRED:
+# - .env
+# - package.json
+# - yarn.lock
+# - craco.config.js
+# - postcss.config.js
+# - tailwind.config.js
+# - /public/
+# - /src/
+# - /node_modules/ (can remove and reinstall with 'yarn install')
+
+## Optional: node_modules (Can regenerate)
+/app/backend/node_modules/          # 34 MB - reinstall with: cd backend && yarn install
+/app/frontend/node_modules/         # 521 MB - reinstall with: cd frontend && yarn install
+
+## Summary of Safe Deletions:
+Total files to remove: ~12 files + 4 directories
+Space saved: ~15-20 MB (excluding node_modules)
+If you remove node_modules: ~555 MB saved (but need to reinstall)
+
+================================================================================
+CRITICAL FILES - NEVER REMOVE:
+================================================================================
+
+Backend:
+✓ /app/backend/.env
+✓ /app/backend/package.json
+✓ /app/backend/server.js
+✓ /app/backend/config/
+✓ /app/backend/models/
+✓ /app/backend/controllers/
+✓ /app/backend/routes/
+✓ /app/backend/utils/
+
+Frontend:
+✓ /app/frontend/.env
+✓ /app/frontend/package.json
+✓ /app/frontend/craco.config.js
+✓ /app/frontend/postcss.config.js
+✓ /app/frontend/tailwind.config.js
+✓ /app/frontend/public/
+✓ /app/frontend/src/
+
+================================================================================
+AFTER REMOVAL, YOUR PROJECT STRUCTURE WILL BE:
+================================================================================
+
+/app/
+├── backend/
+│   ├── .env
+│   ├── package.json
+│   ├── yarn.lock
+│   ├── server.js
+│   ├── config/
+│   │   └── database.js
+│   ├── models/
+│   │   └── Transaction.js
+│   ├── controllers/
+│   │   ├── transactionController.js
+│   │   └── insightController.js
+│   ├── routes/
+│   │   ├── transactions.js
+│   │   └── insights.js
+│   ├── utils/
+│   │   └── seed.js
+│   └── node_modules/        (keep or remove & reinstall)
+│
+└── frontend/
+    ├── .env
+    ├── package.json
+    ├── yarn.lock
+    ├── craco.config.js
+    ├── postcss.config.js
+    ├── tailwind.config.js
+    ├── public/
+    │   └── index.html
+    ├── src/
+    │   ├── index.js
+    │   ├── App.jsx
+    │   ├── App.css
+    │   ├── index.css
+    │   ├── components/
+    │   │   ├── common/
+    │   │   ├── Dashboard/
+    │   │   ├── Transactions/
+    │   │   └── Insights/
+    │   ├── context/
+    │   │   └── AppContext.js
+    │   ├── services/
+    │   │   └── api.js
+    │   ├── utils/
+    │   │   ├── constants.js
+    │   │   └── export.js
+    │   └── styles/
+    │       └── [all CSS files]
+    └── node_modules/        (keep or remove & reinstall)
+
+================================================================================
+COMMAND TO REMOVE ALL UNNECESSARY FILES:
+================================================================================
+
+cd /app
+rm -f FEATURES.md PROJECT_STRUCTURE.md README.md design_guidelines.json test_result.md .gitignore .gitconfig yarn.lock
+rm -rf .git .ruff_cache memory test_reports tests .emergent
+cd frontend
+rm -f .gitignore README.md components.json jsconfig.json
+rm -rf plugins
+
+TOTAL SIZE REDUCTION: ~15-20 MB (excluding node_modules)
