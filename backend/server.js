@@ -38,7 +38,7 @@ app.use(express.static(path.join(rootDir, "frontend/dist")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
-
+console.log("Serving from:", path.join(rootDir, "frontend/dist"));
 // Start server
 const startServer = async () => {
   try {
