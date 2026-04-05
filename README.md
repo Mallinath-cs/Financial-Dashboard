@@ -1,14 +1,14 @@
-# 💰 Financial Dashboard
+# Financial Dashboard
 
 A full-stack personal finance tracker built with the **MERN stack** that helps you monitor your income, expenses, and overall financial health — all in one place.
 
-![Dashboard Preview](./screenshots/dashboard.png)
+![Dashboard Preview](https://github.com/user-attachments/assets/65a3c728-929f-4774-9258-5b749adbf3e0)
 
 ---
 
-## ✨ Features
+## Features
 
-### 📊 Dashboard Overview
+### Dashboard Overview
 - **Total Balance, Income & Expenses** — at-a-glance summary cards
 - **Balance Trend Chart** — line chart showing your balance over the last 30 days
 - **Spending by Category** — interactive donut chart breaking down where your money goes
@@ -16,7 +16,7 @@ A full-stack personal finance tracker built with the **MERN stack** that helps y
 - **Dark/Light Mode** toggle
 - **Role-based view** (Admin / User)
 
-### 💳 Transactions
+### Transactions
 - View all transactions in a clean, sortable table (Date, Category, Description, Type, Amount)
 - **Search** by category or description
 - **Filter** by type — Income or Expense
@@ -25,12 +25,12 @@ A full-stack personal finance tracker built with the **MERN stack** that helps y
 - **Edit** or **Delete** existing transactions
 - **Export** transactions to CSV
 
-### 📁 Spending Categories
+### Spending Categories
 Housing · Food · Transportation · Utilities · Shopping · Entertainment · Healthcare · Education
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -43,7 +43,7 @@ Housing · Food · Transportation · Utilities · Shopping · Entertainment · H
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js >= 18.x
@@ -53,19 +53,19 @@ Housing · Food · Transportation · Utilities · Shopping · Entertainment · H
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/financial-dashboard.git
+   git clone https://github.com/Mallinath-cs/Financial-Dashboard.git
    cd financial-dashboard
    ```
 
 2. **Install server dependencies**
    ```bash
-   cd server
+   cd backend
    npm install
    ```
 
 3. **Install client dependencies**
    ```bash
-   cd ../client
+   cd ../frontend
    npm install
    ```
 
@@ -73,86 +73,78 @@ Housing · Food · Transportation · Utilities · Shopping · Entertainment · H
 
    Create a `.env` file in the `/server` directory:
    ```env
-   PORT=5000
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret
+   MONGO_URL=your_mongo_url
+   DB_NAME=your_db_name
+   CORS_ORIGINS=your_localhost
+   PORT=any_available ports
+   NODE_ENV=development or production
    ```
 
 5. **Run the app**
 
    Start the backend:
    ```bash
-   cd server
+   cd backend
    npm run dev
    ```
 
    Start the frontend:
    ```bash
-   cd client
+   cd frontend
    npm start
    ```
 
-6. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 | Dashboard | Transactions |
 |---|---|
-| ![Dashboard](./screenshots/dashboard.png) | ![Transactions](./screenshots/transactions.png) |
+| ![Dashboard](https://github.com/user-attachments/assets/65a3c728-929f-4774-9258-5b749adbf3e0) | ![Transactions](https://github.com/user-attachments/assets/c3cc60d8-6025-43ba-b4dc-7589ec9ec862) |
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
-financial-dashboard/
-├── client/                 # React frontend
+Financial_dashboard/
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── models/
+│   ├── node_modules/
+│   ├── routes/
+│   ├── utils/
+│   ├── .env
+│   ├── package-lock.json
+│   ├── package.json
+│   └── server.js
+│
+├── frontend/
+│   ├── build/
+│   ├── node_modules/
+│   ├── public/
 │   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── pages/          # Dashboard, Transactions pages
-│   │   ├── hooks/          # Custom React hooks
-│   │   └── utils/          # Helper functions
-├── server/                 # Express backend
-│   ├── controllers/        # Route controllers
-│   ├── models/             # Mongoose schemas
-│   ├── routes/             # API routes
-│   └── middleware/         # Auth & error middleware
+│   ├── .env
+│   ├── .gitignore
+│   ├── components.json
+│   ├── craco.config.js
+│   ├── jsconfig.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── README.md
+│   └── tailwind.config.js
+│
+├── .gitignore
 └── README.md
 ```
 
 ---
 
-## 📡 API Endpoints
-
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/transactions` | Get all transactions |
-| POST | `/api/transactions` | Add a new transaction |
-| PUT | `/api/transactions/:id` | Update a transaction |
-| DELETE | `/api/transactions/:id` | Delete a transaction |
-| GET | `/api/dashboard/summary` | Get balance, income & expense totals |
-| GET | `/api/dashboard/trend` | Get balance trend data |
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request.
-
-1. Fork the project
-2. Create your feature branch: `git checkout -b feature/AmazingFeature`
-3. Commit your changes: `git commit -m 'Add some AmazingFeature'`
-4. Push to the branch: `git push origin feature/AmazingFeature`
-5. Open a Pull Request
-
----
-
-## 📄 License
+## License
 
 This project is licensed under the [MIT License](./LICENSE).
 
 ---
 
-> Built with ❤️ using the MERN Stack
