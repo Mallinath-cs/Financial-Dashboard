@@ -34,7 +34,8 @@ export const AppProvider = ({ children }) => {
   const fetchTransactions = async () => {
     try {
       const data = await apiService.getTransactions();
-      setTransactions(data);
+      setTransactions(Array.isArray(data) ? data : data.transactions || []);
+      console.log("Transactions:", transactions);
     } catch (error) {
       console.error('Failed to fetch transactions');
     }
