@@ -31,7 +31,7 @@ app.use("/api/transactions", transactionRoutes);
 app.use("/api/insights", insightRoutes);
 
 // ✅ Serve frontend (after API)
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
+app.use(express.static(path.join(__dirname, "frontend/dist")));
 
 // ✅ Catch-all (ONLY ONE, always last)
 app.get("*", (req, res) => {
