@@ -6,6 +6,10 @@ A full-stack personal finance tracker built with the **MERN stack** that helps y
 
 ---
 
+<p align="center">
+  <a href="https://financial-dashboard-hjyp.onrender.com/">Live Demo</a>
+</p>
+
 ## Features
 
 ### Dashboard Overview
