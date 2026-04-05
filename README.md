@@ -23,7 +23,7 @@ A full-stack personal finance tracker built with the **MERN stack** that helps y
 - **Sort** by Date or Amount
 - **Add** new transactions via a modal form
 - **Edit** or **Delete** existing transactions
-- **Export** transactions to CSV
+- **Export** transactions to CSV / JSON
 
 ### Spending Categories
 Housing · Food · Transportation · Utilities · Shopping · Entertainment · Healthcare · Education

@@ -1,5 +1,15 @@
 import { getDB } from "../config/database.js";
 
+// Helper to parse DD/MM/YYYY or ISO date strings
+const parseDate = (dateStr) => {
+  if (!dateStr) return null;
+  if (dateStr.includes('/')) {
+    const [day, month, year] = dateStr.split('/');
+    return new Date(year, month - 1, day);
+  }
+  return new Date(dateStr);
+};
+
 class InsightController {
   async getInsights(req, res) {
     try {
@@ -21,6 +31,7 @@ class InsightController {
         });
       }
 
+      // ── Total income & expense ──────────────────────────────────────
       const total_income = transactions
         .filter((t) => t.type === "income")
         .reduce((sum, t) => sum + t.amount, 0);
@@ -31,6 +42,7 @@ class InsightController {
 
       const total_balance = total_income - total_expense;
 
+      // ── Category breakdown ──────────────────────────────────────────
       const categoryTotals = {};
       transactions
         .filter((t) => t.type === "expense")
@@ -40,46 +52,38 @@ class InsightController {
         });
 
       const category_breakdown = Object.entries(categoryTotals).map(
-        ([category, amount]) => ({
-          category,
-          amount,
-        })
+        ([category, amount]) => ({ category, amount })
       );
 
+      // ── Highest spending category ───────────────────────────────────
       let highest_spending_category = null;
       if (category_breakdown.length > 0) {
-        const highest = category_breakdown.reduce((max, cat) =>
+        highest_spending_category = category_breakdown.reduce((max, cat) =>
           cat.amount > max.amount ? cat : max
         );
-        highest_spending_category = highest;
       }
 
+      // ── Monthly comparison (current vs previous month) ──────────────
       const now = new Date();
-      const currentMonthStart = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        1
-      );
 
-      const currentMonthTxns = transactions.filter(
-        (t) => new Date(t.date) >= currentMonthStart
-      );
+      // ── Derive current period from latest transaction date ──────────
+      const latestDate = transactions
+        .map((t) => parseDate(t.date))
+        .filter(Boolean)
+        .reduce((max, d) => (d > max ? d : max), new Date(0));
 
-      const previousMonthStart = new Date(
-        now.getFullYear(),
-        now.getMonth() - 1,
-        1
-      );
+      const currentMonthStart  = new Date(latestDate.getFullYear(), latestDate.getMonth(), 1);
+      const previousMonthStart = new Date(latestDate.getFullYear(), latestDate.getMonth() - 1, 1);
+      const previousMonthEnd   = new Date(latestDate.getFullYear(), latestDate.getMonth(), 0);
 
-      const previousMonthEnd = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        0
-      );
+      const currentMonthTxns = transactions.filter((t) => {
+        const date = parseDate(t.date);
+        return date && date >= currentMonthStart;
+      });
 
       const previousMonthTxns = transactions.filter((t) => {
-        const date = new Date(t.date);
-        return date >= previousMonthStart && date <= previousMonthEnd;
+        const date = parseDate(t.date);
+        return date && date >= previousMonthStart && date <= previousMonthEnd;
       });
 
       const current_expense = currentMonthTxns
@@ -90,15 +94,14 @@ class InsightController {
         .filter((t) => t.type === "expense")
         .reduce((sum, t) => sum + t.amount, 0);
 
-      const has_previous_data = previous_expense > 0;
-
       const monthly_comparison = {
-        current_period: current_expense,
+        current_period:  current_expense,
         previous_period: previous_expense,
-        change: current_expense - previous_expense,
-        has_previous_data,
+        change:          current_expense - previous_expense,  // +ve = up, -ve = down
+        has_previous_data: previous_expense > 0,
       };
 
+      // ── Response ────────────────────────────────────────────────────
       res.json({
         total_balance,
         total_income,
@@ -107,11 +110,10 @@ class InsightController {
         monthly_comparison,
         category_breakdown,
       });
+
     } catch (error) {
       console.error("Error calculating insights:", error);
-      res
-        .status(500)
-        .json({ error: "Failed to calculate insights" });
+      res.status(500).json({ error: "Failed to calculate insights" });
     }
   }
 }
