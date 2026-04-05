@@ -26,13 +26,19 @@ ChartJS.register(
   Filler
 );
 
-const Charts = ({ transactions, categoryData }) => {
+const Charts = ({ transactions, categoryData, theme }) => {
+  const isDarkMode = theme === 'dark';
+    const lineColor = isDarkMode ? "#EAB308" : "#0F766E";
+    const bgColor = isDarkMode
+      ? "rgba(234, 179, 8, 0.2)"
+      : "rgba(15, 118, 110, 0.1)";
+    const textColor = isDarkMode ? "#E5E7EB" : "#374151"; // light vs dark text
+  const gridColor = isDarkMode ? "rgba(255,255,255,0.1)" : "#E5E7EB";
   const getLast30DaysData = () => {
     const days = 30;
     const labels = [];
     const balanceData = [];
     const today = new Date();
-
     for (let i = days - 1; i >= 0; i--) {
       const date = new Date(today);
       date.setDate(date.getDate() - i);
@@ -56,8 +62,8 @@ const Charts = ({ transactions, categoryData }) => {
       {
         label: "Balance Trend",
         data: balanceData,
-        borderColor: "#0F766E",
-        backgroundColor: "rgba(15, 118, 110, 0.1)",
+        borderColor: lineColor,
+        backgroundColor: bgColor,
         fill: true,
         tension: 0.4
       }
@@ -82,12 +88,20 @@ const Charts = ({ transactions, categoryData }) => {
       y: {
         beginAtZero: true,
         ticks: {
+          color: textColor,
           callback: (value) => `₹${value.toLocaleString('en-IN')}`
+        },
+        grid: {
+          color: gridColor
         }
       },
       x: {
-        ticks: {
-          maxTicksLimit: 10
+    ticks: {
+      color: textColor,
+      maxTicksLimit: 10
+        },
+        grid: {
+          color: gridColor
         }
       }
     }
@@ -95,6 +109,7 @@ const Charts = ({ transactions, categoryData }) => {
 
   const doughnutChartData = {
     labels: categoryData.map(c => c.category),
+
     datasets: [
       {
         data: categoryData.map(c => c.amount),
@@ -120,6 +135,7 @@ const Charts = ({ transactions, categoryData }) => {
       legend: {
         position: "right",
         labels: {
+          color: textColor,
           padding: 12,
           font: { size: 12 }
         }
@@ -146,7 +162,6 @@ const Charts = ({ transactions, categoryData }) => {
           <Line data={lineChartData} options={lineChartOptions} />
         </div>
       </div>
-
       <div className="chart-card" data-testid="spending-breakdown-chart">
         <h2>Spending by Category</h2>
         <div style={{ height: "300px" }}>

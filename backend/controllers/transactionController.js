@@ -1,5 +1,5 @@
-const { getDB } = require('../config/database');
-const Transaction = require('../models/Transaction');
+import { getDB } from "../config/database.js";
+import Transaction from "../models/Transaction.js";
 
 class TransactionController {
   async getAll(req, res) {
@@ -90,4 +90,4 @@ class TransactionController {
   }
 }
 
-module.exports = new TransactionController();
+export default new TransactionController();

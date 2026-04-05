@@ -134,7 +134,7 @@ function App() {
           onAction={role === ROLES.ADMIN ? () => setShowModal(true) : null}
         />
       ) : (
-        <Charts transactions={transactions} categoryData={categoryData} />
+        <Charts transactions={transactions} categoryData={categoryData} theme={theme} />
       )}
 
       {/* Insights Section */}

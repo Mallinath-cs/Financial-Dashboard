@@ -21,15 +21,25 @@ const TransactionList = ({ transactions, role, onEdit, onDelete }) => {
       <tbody>
         {transactions.map((transaction) => (
           <tr key={transaction.id} data-testid="transaction-item">
-            <td>{new Date(transaction.date).toLocaleDateString()}</td>
-            <td>{transaction.category}</td>
-            <td>{transaction.description || "-"}</td>
-            <td>
+            <td data-label="Date">
+              {new Date(transaction.date).toLocaleDateString()}
+            </td>
+
+            <td data-label="Category">
+              {transaction.category}
+            </td>
+
+            <td data-label="Description">
+              {transaction.description || "-"}
+            </td>
+
+            <td data-label="Type">
               <Badge type={transaction.type} testId={`badge-${transaction.type}`}>
                 {transaction.type}
               </Badge>
             </td>
-            <td>
+
+            <td data-label="Amount">
               <span
                 className={`amount-${transaction.type}`}
                 data-testid="transaction-amount"
@@ -39,27 +49,27 @@ const TransactionList = ({ transactions, role, onEdit, onDelete }) => {
               </span>
             </td>
             {role === ROLES.ADMIN && (
-              <td>
-                <div className="action-buttons">
-                  <button
-                    className="icon-button"
-                    onClick={() => onEdit(transaction)}
-                    data-testid="edit-transaction-btn"
-                    title="Edit"
-                  >
-                    <Edit2 size={16} />
-                  </button>
-                  <button
-                    className="icon-button delete"
-                    onClick={() => onDelete(transaction.id)}
-                    data-testid="delete-transaction-btn"
-                    title="Delete"
-                  >
-                    <Trash2 size={16} />
-                  </button>
-                </div>
-              </td>
-            )}
+            <td data-label="Actions">
+              <div className="action-buttons">
+                <button
+                  className="icon-button"
+                  onClick={() => onEdit(transaction)}
+                  data-testid="edit-transaction-btn"
+                  title="Edit"
+                >
+                  <Edit2 size={16} />
+                </button>
+                <button
+                  className="icon-button delete"
+                  onClick={() => onDelete(transaction.id)}
+                  data-testid="delete-transaction-btn"
+                  title="Delete"
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
+            </td>
+          )}
           </tr>
         ))}
       </tbody>

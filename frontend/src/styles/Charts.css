@@ -1,6 +1,6 @@
 .charts-container {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
 }
 
@@ -14,10 +14,4 @@
 
 .chart-card h2 {
   margin-bottom: 24px;
-}
-
-@media (max-width: 1024px) {
-  .charts-container {
-    grid-template-columns: 1fr;
-  }
 }

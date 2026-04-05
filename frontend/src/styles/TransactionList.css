@@ -78,3 +78,40 @@
     padding: 12px 8px;
   }
 }
+@media (max-width: 720px) {
+  .transactions-table,
+  .transactions-table thead,
+  .transactions-table tbody,
+  .transactions-table th,
+  .transactions-table td,
+  .transactions-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .transactions-table thead {
+    display: none;
+  }
+
+  .transactions-table tr {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    margin-bottom: 12px;
+    padding: 12px;
+  }
+
+  .transactions-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border: none;
+  }
+
+  .transactions-table td::before {
+    content: attr(data-label);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+}

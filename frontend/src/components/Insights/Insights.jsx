@@ -7,7 +7,7 @@ const Insights = ({ insights }) => {
   if (!insights || !insights.highest_spending_category) {
     return null;
   }
-
+  
   return (
     <div className="insights-section" data-testid="insights-section">
       <h2>Insights</h2>
@@ -33,12 +33,20 @@ const Insights = ({ insights }) => {
               <TrendingUp size={20} />
               Period Comparison
             </h3>
-            <div className="insight-value">
-              {formatCurrency(Math.abs(insights.monthly_comparison.change))}
-            </div>
-            <div className="insight-description">
-              {insights.monthly_comparison.change >= 0 ? "Up" : "Down"} from previous period
-            </div>
+            {insights.monthly_comparison.has_previous_data ? (
+              <>
+                <div className="insight-value">
+                  {formatCurrency(Math.abs(insights.monthly_comparison.change))}
+                </div>
+                <div className="insight-description">
+                  {insights.monthly_comparison.change >= 0 ? "Up" : "Down"} from previous period
+                </div>
+              </>
+            ) : (
+              <div className="insight-description">
+                No previous data to compare
+              </div>
+            )}
           </div>
         )}
       </div>
