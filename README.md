@@ -2,14 +2,13 @@
 
 A full-stack personal finance tracker built with the **MERN stack** that helps you monitor your income, expenses, and overall financial health — all in one place.
 
-![Dashboard Preview](https://github.com/user-attachments/assets/65a3c728-929f-4774-9258-5b749adbf3e0)
-
----
-
 <p align="center">
   <a href="https://financial-dashboard-hjyp.onrender.com/">Live Demo</a>
 </p>
 
+![Dashboard Preview](https://github.com/user-attachments/assets/65a3c728-929f-4774-9258-5b749adbf3e0)
+
+---
 ## Features
 
 ### Dashboard Overview
