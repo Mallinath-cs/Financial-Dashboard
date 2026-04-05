@@ -30,8 +30,9 @@ app.get("/api", (req, res) => {
 app.use("/api/transactions", transactionRoutes);
 app.use("/api/insights", insightRoutes);
 
+const rootDir = path.resolve(__dirname, "..");
 // ✅ Serve frontend (after API)
-app.use(express.static(path.join(__dirname, "frontend/dist")));
+app.use(express.static(path.join(rootDir, "frontend/dist")));
 
 // ✅ Catch-all (ONLY ONE, always last)
 app.get("*", (req, res) => {
