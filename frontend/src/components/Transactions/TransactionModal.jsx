@@ -65,16 +65,18 @@ const TransactionModal = ({ isOpen, onClose, onSubmit, editingTransaction }) => 
 
           <div className="form-group">
             <label htmlFor="type">Type</label>
-            <select
-              id="type"
-              value={formData.type}
-              onChange={(e) => handleChange('type', e.target.value)}
-              required
-              data-testid="form-type-select"
-            >
-              <option value={TRANSACTION_TYPES.EXPENSE}>Expense</option>
-              <option value={TRANSACTION_TYPES.INCOME}>Income</option>
-            </select>
+            <div className="select-wrapper">
+              <select
+                id="type"
+                value={formData.type}
+                onChange={(e) => handleChange('type', e.target.value)}
+                required
+                data-testid="form-type-select"
+              >
+                <option value={TRANSACTION_TYPES.EXPENSE}>Expense</option>
+                <option value={TRANSACTION_TYPES.INCOME}>Income</option>
+              </select>
+            </div>
           </div>
 
           <div className="form-group">
@@ -94,19 +96,21 @@ const TransactionModal = ({ isOpen, onClose, onSubmit, editingTransaction }) => 
 
           <div className="form-group">
             <label htmlFor="category">Category</label>
-            <select
-              id="category"
-              value={formData.category}
-              onChange={(e) => handleChange('category', e.target.value)}
-              required
-              data-testid="form-category-select"
-            >
-              {CATEGORIES.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </select>
+            <div className="select-wrapper">
+              <select
+                id="category"
+                value={formData.category}
+                onChange={(e) => handleChange('category', e.target.value)}
+                required
+                data-testid="form-category-select"
+              >
+                {CATEGORIES.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <div className="form-group">
@@ -117,6 +121,7 @@ const TransactionModal = ({ isOpen, onClose, onSubmit, editingTransaction }) => 
               onChange={(e) => handleChange('description', e.target.value)}
               data-testid="form-description-input"
               placeholder="Add a note..."
+              maxLength={25}
             />
           </div>
         </div>

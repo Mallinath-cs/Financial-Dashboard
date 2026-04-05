@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect  } from 'react';
 import { Plus, Moon, Sun, Download } from 'lucide-react';
 import { useApp } from './context/AppContext';
 import { ROLES } from './utils/constants';
@@ -22,7 +22,20 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [editingTransaction, setEditingTransaction] = useState(null);
   const [showExportMenu, setShowExportMenu] = useState(false);
+  const exportRef = useRef(null);
+  useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (exportRef.current && !exportRef.current.contains(event.target)) {
+      setShowExportMenu(false);
+    }
+  };
 
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   const handleAddOrUpdateTransaction = async (formData) => {
     try {
       if (editingTransaction) {
@@ -146,7 +159,7 @@ function App() {
           <h2>Transactions</h2>
           <div className="header-actions">
             {!isEmpty && (
-              <div className="export-menu">
+              <div className="export-menu" ref={exportRef}>
                 <Button
                   variant="secondary"
                   onClick={() => setShowExportMenu(!showExportMenu)}

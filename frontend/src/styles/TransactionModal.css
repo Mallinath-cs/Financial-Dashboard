@@ -9,7 +9,6 @@
   font-size: 0.875rem;
   color: var(--color-text-primary);
 }
-
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -23,7 +22,27 @@
   background: var(--color-bg-surface);
   transition: border-color 0.2s ease;
 }
+.form-group select{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.select-wrapper {
+  position: relative;
+}
+.select-wrapper select {
+  padding-right: 40px; /* space for arrow */
+}
 
+.select-wrapper::after {
+  content: "▼";
+  position: absolute;
+  right: 16px; /* 👈 control spacing from right */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 12px;
+}
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
