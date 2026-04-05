@@ -32,13 +32,13 @@ app.use("/api/insights", insightRoutes);
 
 const rootDir = path.resolve(__dirname, "..");
 // ✅ Serve frontend (after API)
-app.use(express.static(path.join(rootDir, "frontend/dist")));
+app.use(express.static(path.join(rootDir, "frontend/build")));
 
 // ✅ Catch-all (ONLY ONE, always last)
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
-console.log("Serving from:", path.join(rootDir, "frontend/dist"));
+console.log("Serving from:", path.join(rootDir, "frontend/build"));
 // Start server
 const startServer = async () => {
   try {
