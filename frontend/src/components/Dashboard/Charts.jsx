@@ -35,24 +35,55 @@ const Charts = ({ transactions, categoryData, theme }) => {
     const textColor = isDarkMode ? "#E5E7EB" : "#374151"; // light vs dark text
   const gridColor = isDarkMode ? "rgba(255,255,255,0.1)" : "#E5E7EB";
   const getLast30DaysData = () => {
-    const days = 30;
-    const labels = [];
-    const balanceData = [];
-    const today = new Date();
-    for (let i = days - 1; i >= 0; i--) {
-      const date = new Date(today);
-      date.setDate(date.getDate() - i);
-      labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+  const days = 30;
+  const labels = [];
+  const balanceData = [];
 
-      const txnsUpToDate = transactions.filter(t => new Date(t.date) <= date);
-      const balance = txnsUpToDate.reduce((sum, t) => {
-        return sum + (t.type === 'income' ? t.amount : -t.amount);
-      }, 0);
-      balanceData.push(balance);
+  const normalizeDate = (d) => {
+    const date = new Date(d);
+    date.setHours(0, 0, 0, 0);
+    return date;
+  };
+
+  const today = normalizeDate(new Date());
+
+  // 1. Sort transactions once
+  const sorted = [...transactions].sort(
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
+
+  let balance = 0;
+  let index = 0;
+
+  // 2. Loop through last 30 days
+  for (let i = days - 1; i >= 0; i--) {
+    const currentDate = new Date(today);
+    currentDate.setDate(currentDate.getDate() - i);
+
+    // 3. Add transactions up to this date
+    while (
+      index < sorted.length &&
+      normalizeDate(sorted[index].date) <= currentDate
+    ) {
+      const t = sorted[index];
+      balance += t.type === "income" ? t.amount : -t.amount;
+      index++;
     }
 
-    return { labels, balanceData };
-  };
+    // 4. Push label
+    labels.push(
+      currentDate.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+      })
+    );
+
+    // 5. Push balance
+    balanceData.push(balance);
+  }
+
+  return { labels, balanceData };
+};
 
   const { labels: lineLabels, balanceData } = getLast30DaysData();
 
