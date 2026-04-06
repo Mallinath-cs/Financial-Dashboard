@@ -20,7 +20,12 @@
 .app-header h1 {
   margin: 0;
 }
-
+.app-header-dev{
+  color: rgba(255, 0, 0, 0.588);
+}
+[data-theme="dark"] .app-header-dev {
+  color: rgba(255, 255, 0, 0.616);
+}
 .header-controls {
   display: flex;
   align-items: center;

@@ -109,7 +109,7 @@ function App() {
     <div className="app-container" data-testid="app-container">
       {/* Header */}
       <header className="app-header">
-        <h1>Financial Dashboard</h1>
+        <h1>FinMetric <span className='app-header-dev'>( *still in development )</span></h1>
         <div className="header-controls">
           <button
             className="theme-toggle"

@@ -52,17 +52,24 @@ const TransactionModal = ({ isOpen, onClose, onSubmit, editingTransaction }) => 
       <form onSubmit={handleSubmit}>
         <div className="modal-body">
           <div className="form-group">
-            <label htmlFor="date">Date</label>
-            <input
-              type="date"
-              id="date"
-              value={formData.date}
-              onChange={(e) => handleChange('date', e.target.value)}
-              required
-              data-testid="form-date-input"
-            />
+            <div className="date-wrapper">
+              <label htmlFor="date">Date</label>
+              <div className="date-field">
+                <input
+                  type="date"
+                  id="date"
+                  className="date-input"
+                  value={formData.date}
+                  onChange={(e) => handleChange('date', e.target.value)}
+                  required
+                  data-testid="form-date-input"
+                />
+                <span className="date-icon">
+                  <img src="/calendar.svg" alt="" />
+                </span>
+              </div>
+            </div>
           </div>
-
           <div className="form-group">
             <label htmlFor="type">Type</label>
             <div className="select-wrapper">
