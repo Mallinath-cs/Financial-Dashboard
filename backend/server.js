@@ -7,6 +7,7 @@ import { connectDB } from "./config/database.js";
 import { seedDatabase } from "./utils/seed.js";
 import transactionRoutes from "./routes/transactions.js";
 import insightRoutes from "./routes/insights.js";
+import chatRoutes from "./routes/chatRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 8001;
@@ -29,6 +30,7 @@ app.get("/api", (req, res) => {
 
 app.use("/api/transactions", transactionRoutes);
 app.use("/api/insights", insightRoutes);
+app.use("/api/chat", chatRoutes);
 
 const rootDir = path.resolve(__dirname, "..");
 // ✅ Serve frontend (after API)

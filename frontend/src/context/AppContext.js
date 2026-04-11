@@ -27,9 +27,6 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
 
   const fetchTransactions = async () => {
     try {
@@ -69,8 +66,7 @@ export const AppProvider = ({ children }) => {
     insights,
     loading,
     refreshData,
-    theme,
-    toggleTheme
+    theme
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

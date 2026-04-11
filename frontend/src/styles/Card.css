@@ -1,12 +1,12 @@
 .card {
   background: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
   padding: 24px;
-  box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 6px 6px 0px #000; 
 }
 
 .card-header {
@@ -27,23 +27,26 @@
 
 .card-icon.balance {
   background: rgba(99, 102, 241, 0.1);
-  color: #6366F1;
+  color: black;
+  border: 3px solid black;
 }
 
 .card-icon.income {
   background: var(--color-income-bg);
-  color: var(--color-income);
+  color: black;
+  border: 3px solid black;
 }
 
 .card-icon.expense {
   background: var(--color-expense-bg);
-  color: var(--color-expense);
+  color: black;
+  border: 3px solid black;
 }
 
 .card-label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-text-secondary);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: black;
 }
 
 .card-value {

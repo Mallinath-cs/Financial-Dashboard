@@ -9,13 +9,14 @@ const Insights = ({ insights }) => {
   }
   
   return (
-    <div className="insights-section" data-testid="insights-section">
-      <h2>Insights</h2>
+    <div className="insights-section">
       <div className="insights-grid">
         {insights.highest_spending_category && (
-          <div className="insight-card" data-testid="insight-highest-spending">
+          <div className="insight-card">
             <h3>
-              <Lightbulb size={20} />
+              <span className='lightbulb-icon'>
+              <Lightbulb size={20}/>
+              </span>
               Highest Spending Category
             </h3>
             <div className="insight-value">
@@ -30,7 +31,9 @@ const Insights = ({ insights }) => {
         {insights.monthly_comparison && (
           <div className="insight-card" data-testid="insight-monthly-comparison">
             <h3>
-              <TrendingUp size={20} />
+              <span className='trendup-icon'>
+                <TrendingUp size={20} />
+              </span>
               Period Comparison
             </h3>
             {insights.monthly_comparison.has_previous_data ? (

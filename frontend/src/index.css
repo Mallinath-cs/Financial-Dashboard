@@ -1,7 +1,7 @@
 :root,
 [data-theme="light"] {
-  --color-bg-body: #F7F8FA;
-  --color-bg-surface: #FFFFFF;
+  --color-bg-body: #FFE4C4;
+  --color-bg-surface: #FFFEF7;
   --color-text-primary: #111827;
   --color-text-secondary: #6B7280;
   --color-text-tertiary: #9CA3AF;
@@ -22,39 +22,24 @@
   --font-body: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
 }
 
-[data-theme="dark"] {
-  --color-bg-body: #0F172A;
-  --color-bg-surface: #1E293B;
-  --color-text-primary: #F1F5F9;
-  --color-text-secondary: #CBD5E1;
-  --color-text-tertiary: #94A3B8;
-  --color-primary: #14B8A6;
-  --color-primary-hover: #0D9488;
-  --color-income: #10B981;
-  --color-income-bg: rgba(16, 185, 129, 0.15);
-  --color-expense: #F87171;
-  --color-expense-bg: rgba(248, 113, 113, 0.15);
-  --color-border: #334155;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
-  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   margin: 0;
-  font-family: var(--font-body);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Lexend Mega";
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
   background-color: var(--color-bg-body);
   color: var(--color-text-secondary);
   font-size: 1rem;
   line-height: 1.5;
+  border-right: 5px solid black;
 }
 
 code {
@@ -94,4 +79,15 @@ button {
 
 input, select, textarea {
   font-family: inherit;
+}
+/* Entire app scrollbar */
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-track {
+  background: white;
+}
+::-webkit-scrollbar-thumb {
+  background: black;
 }

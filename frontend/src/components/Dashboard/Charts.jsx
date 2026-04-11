@@ -28,11 +28,9 @@ ChartJS.register(
 
 const Charts = ({ transactions, categoryData, theme }) => {
   const isDarkMode = theme === 'dark';
-    const lineColor = isDarkMode ? "#EAB308" : "#0F766E";
-    const bgColor = isDarkMode
-      ? "rgba(234, 179, 8, 0.2)"
-      : "rgba(15, 118, 110, 0.1)";
-    const textColor = isDarkMode ? "#E5E7EB" : "#374151"; // light vs dark text
+    const lineColor = "#000000";
+    const bgColor = "rgba(128, 128, 128, 0.1)";
+    const textColor = "#000000";
   const gridColor = isDarkMode ? "rgba(255,255,255,0.1)" : "#E5E7EB";
   const getLast30DaysData = () => {
   const days = 30;
@@ -119,7 +117,7 @@ const Charts = ({ transactions, categoryData, theme }) => {
       y: {
         beginAtZero: true,
         ticks: {
-          color: textColor,
+          color: "black",
           callback: (value) => `₹${value.toLocaleString('en-IN')}`
         },
         grid: {
@@ -154,48 +152,60 @@ const Charts = ({ transactions, categoryData, theme }) => {
           "#EF4444",
           "#14B8A6"
         ],
-        borderWidth: 0
+        borderWidth: 2,
+        borderColor: "black"
       }
     ]
   };
 
   const doughnutChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: "right",
-        labels: {
-          color: textColor,
-          padding: 12,
-          font: { size: 12 }
-        }
-      },
-      tooltip: {
-        backgroundColor: "rgba(0, 0, 0, 0.8)",
-        padding: 12,
-        callbacks: {
-          label: (context) => {
-            const label = context.label || "";
-            const value = context.parsed || 0;
-            return `${label}: ₹${value.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
-          }
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: "right",
+      labels: {
+        color: "#000000",
+        padding: 16,
+        font: {
+          size: 15,
+          weight: "bold"
+        },
+        boxWidth: 20
+      }
+    },
+    tooltip: {
+      backgroundColor: "#ffffff",
+      titleColor: "#000000",
+      bodyColor: "#000000",
+      borderColor: "#000000",
+      borderWidth: 2,
+      padding: 12,
+      cornerRadius: 0,
+      callbacks: {
+        label: (context) => {
+          const label = context.label || "";
+          const value = context.parsed || 0;
+          return `${label}: ₹${value.toLocaleString('en-IN', {
+            maximumFractionDigits: 2
+          })}`;
         }
       }
     }
-  };
+  }
+};
 
   return (
     <div className="charts-container">
       <div className="chart-card" data-testid="balance-trend-chart">
-        <h2>Balance Trend (Last 30 Days)</h2>
-        <div style={{ height: "300px" }}>
+        <h2>Balance Trend</h2>
+        <div style={{ height: "300px" }} className='balance-trend-box'>
           <Line data={lineChartData} options={lineChartOptions} />
         </div>
       </div>
       <div className="chart-card" data-testid="spending-breakdown-chart">
         <h2>Spending by Category</h2>
-        <div style={{ height: "300px" }}>
+        <div style={{ height: "300px" }} className='spending-breakdown-box'>
           {categoryData.length > 0 ? (
             <Doughnut data={doughnutChartData} options={doughnutChartOptions} />
           ) : (

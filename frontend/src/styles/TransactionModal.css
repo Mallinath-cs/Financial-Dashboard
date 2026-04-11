@@ -4,23 +4,24 @@
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
+  font-weight: 900;
   font-size: 0.875rem;
   color: var(--color-text-primary);
+  padding-bottom: 5px;
 }
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid var(--color-border);
+  border: 2px solid black;
   border-radius: var(--radius-sm);
   font-family: inherit;
   font-size: 1rem;
   color: var(--color-text-primary);
   background: var(--color-bg-surface);
   transition: border-color 0.2s ease;
+  box-shadow: 4px 4px 0 black;
 }
 
 .date-field {
@@ -38,7 +39,6 @@
   box-sizing: border-box;
 }
 
-/* Make native indicator invisible but still clickable */
 .date-input::-webkit-calendar-picker-indicator {
   opacity: 0;
   position: absolute;
@@ -51,13 +51,12 @@
   z-index: 2;
 }
 
-/* Custom icon sits below the invisible native indicator */
 .date-icon {
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  pointer-events: none; /* clicks pass through to the native indicator */
+  pointer-events: none;
   z-index: 1;
   display: flex;
   align-items: center;
@@ -67,9 +66,7 @@
   width: 18px;
   height: 18px;
 }
-[data-theme="dark"] .date-icon img {
-  filter: brightness(0) invert(1); /* makes it white */
-}
+
 .form-group select{
   appearance: none;
   -webkit-appearance: none;
@@ -79,13 +76,13 @@
   position: relative;
 }
 .select-wrapper select {
-  padding-right: 40px; /* space for arrow */
+  padding-right: 40px;
 }
 
 .select-wrapper::after {
   content: "▼";
   position: absolute;
-  right: 16px; /* 👈 control spacing from right */
+  right: 16px; 
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
@@ -94,9 +91,8 @@
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.2);
+  outline: 0;
+  box-shadow: 4px 4px 0 black;
 }
 
 .form-group textarea {

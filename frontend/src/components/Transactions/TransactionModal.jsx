@@ -47,7 +47,6 @@ const TransactionModal = ({ isOpen, onClose, onSubmit, editingTransaction }) => 
       isOpen={isOpen}
       onClose={onClose}
       title={editingTransaction ? "Edit Transaction" : "Add Transaction"}
-      testId="transaction-modal"
     >
       <form onSubmit={handleSubmit}>
         <div className="modal-body">

@@ -7,11 +7,13 @@
 }
 
 .badge-income {
-  background: var(--color-income-bg);
-  color: var(--color-income);
+  background: rgb(182, 245, 182);
+  border: 2px solid black;
+  color: black;
 }
 
 .badge-expense {
-  background: var(--color-expense-bg);
-  color: var(--color-expense);
+  background: rgb(246, 184, 184);
+  color: black;
+  border: 2px solid black;
 }

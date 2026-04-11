@@ -12,17 +12,39 @@ import TransactionList from './components/Transactions/TransactionList.jsx';
 import TransactionModal from './components/Transactions/TransactionModal.jsx';
 import EmptyState from './components/common/EmptyState.jsx';
 import Button from './components/common/Button.jsx';
+import ChatBot from '../src/components/chatBot/chatBot.jsx'
 import './App.css';
 
 function App() {
-  const { role, setRole, transactions, insights, refreshData, theme, toggleTheme } = useApp();
+  const { role, setRole, transactions, insights, refreshData, theme } = useApp();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("date");
   const [filterType, setFilterType] = useState("all");
   const [showModal, setShowModal] = useState(false);
   const [editingTransaction, setEditingTransaction] = useState(null);
   const [showExportMenu, setShowExportMenu] = useState(false);
-  const exportRef = useRef(null);
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const options = ["Admin", "Viewer"];
+
+  const exportRef = useRef(null); 
+   useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   useEffect(() => {
   const handleClickOutside = (event) => {
     if (exportRef.current && !exportRef.current.contains(event.target)) {
@@ -109,29 +131,41 @@ function App() {
     <div className="app-container" data-testid="app-container">
       {/* Header */}
       <header className="app-header">
-        <h1>FinMetric <span className='app-header-dev'>( *still in development )</span></h1>
-        <div className="header-controls">
-          <button
-            className="theme-toggle"
-            onClick={toggleTheme}
-            data-testid="theme-toggle"
-            title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-          >
-            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-          </button>
-          <div className="role-toggle" data-testid="role-toggle">
-            <label htmlFor="role-select">Role:</label>
-            <select
-              id="role-select"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              data-testid="role-select"
-            >
-              <option value={ROLES.ADMIN}>{ROLES.ADMIN}</option>
-              <option value={ROLES.VIEWER}>{ROLES.VIEWER}</option>
-            </select>
-          </div>
+        <div className="header-icon-container">
+          <img src="./coin_icon.png" alt="" />
+          <h1>Finora AI</h1>
         </div>
+        <div className="header-right">
+          <div className="github-container">
+            <img src='./github_icon.png'/>
+          </div>
+        <div className="dropdown" ref={dropdownRef}>
+        <div
+          className="dropdown-header"
+          onClick={() => setOpen(!open)}
+        >
+          {role}
+          <span className={`arrow ${open ? "open" : ""}`}>▾</span>
+        </div>
+
+        {open && (
+          <div className="dropdown-list">
+            {options.map((opt) => (
+              <div
+                key={opt}
+                className="dropdown-item"
+                onClick={() => {
+                  setRole(opt);
+                  setOpen(false);
+                }}
+              >
+                {opt}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      </div>
       </header>
 
       {/* Summary Cards */}
@@ -160,35 +194,35 @@ function App() {
           <div className="header-actions">
             {!isEmpty && (
               <div className="export-menu" ref={exportRef}>
-                <Button
-                  variant="secondary"
-                  onClick={() => setShowExportMenu(!showExportMenu)}
-                  testId="export-btn"
-                >
-                  <Download size={16} />
-                  Export
-                </Button>
-                {showExportMenu && (
-                  <div className="export-dropdown" data-testid="export-dropdown">
-                    <button onClick={() => handleExport('csv')} data-testid="export-csv-btn">
-                      Export as CSV
-                    </button>
-                    <button onClick={() => handleExport('json')} data-testid="export-json-btn">
-                      Export as JSON
-                    </button>
-                  </div>
-                )}
+            <button
+              className="export-btn"
+              onClick={() => setShowExportMenu(!showExportMenu)}
+            >
+              <Download size={16} />
+              <span>Export</span>
+              <span className={`arrow ${showExportMenu ? "open" : ""}`}>▾</span>
+            </button>
+
+            {showExportMenu && (
+              <div className="export-dropdown">
+                <button onClick={() => handleExport("csv")}>
+                  Export as CSV
+                </button>
+                <button onClick={() => handleExport("json")}>
+                  Export as JSON
+                </button>
               </div>
             )}
+          </div>
+            )}
             {role === ROLES.ADMIN && (
-              <Button
-                variant="primary"
+              <button
+                className="neo-btn primary"
                 onClick={() => setShowModal(true)}
-                testId="add-transaction-btn"
               >
-                <Plus size={16} />
-                Add Transaction
-              </Button>
+                <Plus size={25} />
+                <span className='add-transaction-text'>Add</span>
+              </button>
             )}
           </div>
         </div>
@@ -219,7 +253,6 @@ function App() {
           />
         )}
       </div>
-
       {/* Add/Edit Transaction Modal */}
       {role === ROLES.ADMIN && (
         <TransactionModal
@@ -229,6 +262,7 @@ function App() {
           editingTransaction={editingTransaction}
         />
       )}
+      <ChatBot />
     </div>
   );
 }
