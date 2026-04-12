@@ -1,4 +1,4 @@
-# Financial Dashboard
+# Finora AI
 
 A full-stack personal finance tracker built with the **MERN stack** that helps you monitor your income, expenses, and overall financial health — all in one place.
 
@@ -16,7 +16,6 @@ A full-stack personal finance tracker built with the **MERN stack** that helps y
 - **Balance Trend Chart** — line chart showing your balance over the last 30 days
 - **Spending by Category** — interactive donut chart breaking down where your money goes
 - **Insights Panel** — highlights your highest spending category and period-over-period comparison
-- **Dark/Light Mode** toggle
 - **Role-based view** (Admin / User)
 
 ### Transactions
@@ -56,8 +55,8 @@ Housing · Food · Transportation · Utilities · Shopping · Entertainment · H
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Mallinath-cs/Financial-Dashboard.git
-   cd financial-dashboard
+   git clone https://github.com/Mallinath-cs/Finora-AI.git
+   cd Finora-AI
    ```
 
 2. **Install server dependencies**
@@ -111,7 +110,7 @@ Housing · Food · Transportation · Utilities · Shopping · Entertainment · H
 ## Project Structure
 
 ```
-Financial_dashboard/
+Finora-AI/
 ├── backend/
 │   ├── config/
 │   ├── controllers/

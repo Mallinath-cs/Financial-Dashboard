@@ -54,4 +54,7 @@
     margin-right: 10px;
     margin-left: 10px;
   } 
+  .chart-card h2 {
+    font-size: 1.3rem;
+  }
 }

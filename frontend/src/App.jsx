@@ -24,6 +24,7 @@ function App() {
   const [editingTransaction, setEditingTransaction] = useState(null);
   const [showExportMenu, setShowExportMenu] = useState(false);
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); 
   const dropdownRef = useRef(null);
   const options = ["Admin", "Viewer"];
 
@@ -44,7 +45,14 @@ function App() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
+  useEffect(() => {
+    const initFetch = async () => {
+      setIsLoading(true);
+      await refreshData();
+      setIsLoading(false);
+    };
+    initFetch();
+  }, []);
   useEffect(() => {
   const handleClickOutside = (event) => {
     if (exportRef.current && !exportRef.current.contains(event.target)) {
@@ -60,6 +68,7 @@ function App() {
   }, []);
   const handleAddOrUpdateTransaction = async (formData) => {
     try {
+      setIsLoading(true);
       if (editingTransaction) {
         await apiService.updateTransaction(editingTransaction.id, formData);
       } else {
@@ -69,16 +78,21 @@ function App() {
       handleCloseModal();
     } catch (error) {
       console.error("Error saving transaction:", error);
+    }finally {
+      setIsLoading(false);
     }
   };
 
   const handleDeleteTransaction = async (id) => {
     if (window.confirm("Are you sure you want to delete this transaction?")) {
       try {
+        setIsLoading(true);
         await apiService.deleteTransaction(id);
         await refreshData();
       } catch (error) {
         console.error("Error deleting transaction:", error);
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -136,7 +150,7 @@ function App() {
           <h1>Finora AI</h1>
         </div>
         <div className="header-right">
-          <a href="https://github.com/Mallinath-cs/Financial-Dashboard" target='_blank' rel='noopener' className='github-link'>
+          <a href="https://github.com/Mallinath-cs/Finora-AI" target='_blank' rel='noopener' className='github-link'>
             <div className="github-container">
               <img src='./github_icon.png'/>
             </div>
@@ -174,7 +188,14 @@ function App() {
       <SummaryCards insights={insights} />
 
       {/* Charts Section */}
-      {isEmpty ? (
+      {isLoading ? (
+        <Charts 
+          transactions={[]} 
+          categoryData={[]} 
+          theme={theme} 
+          isLoading={true} 
+        />
+      ) : isEmpty ? (
         <EmptyState
           title="No data yet"
           description="Start by adding your first transaction to see visualizations"
@@ -182,7 +203,12 @@ function App() {
           onAction={role === ROLES.ADMIN ? () => setShowModal(true) : null}
         />
       ) : (
-        <Charts transactions={transactions} categoryData={categoryData} theme={theme} />
+        <Charts 
+          transactions={transactions} 
+          categoryData={categoryData} 
+          theme={theme} 
+          isLoading={false} 
+        />
       )}
 
       {/* Insights Section */}

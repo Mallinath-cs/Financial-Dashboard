@@ -1,6 +1,7 @@
 .empty-state {
   margin: 0 auto;
   padding-block: 80px;
+  justify-content: center;
   text-align: center;
   width: 95%;
   background: var(--color-bg-surface);

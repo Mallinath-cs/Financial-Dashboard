@@ -15,7 +15,7 @@ const ChatBot = () => {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hi! I'm your AI financial advisor. Ask me anything or pick a question below!",
+      content: "Hi! I'm Finora your AI financial advisor. Ask me anything or pick a question below!",
     },
   ]);
   const [input, setInput] = useState("");
@@ -105,7 +105,7 @@ const ChatBot = () => {
           {/* Header */}
           <div className="chat-header">
             <Bot size={20} />
-            <span>AI Financial Advisor</span>
+            <span>Finora</span>
             <button onClick={() => setIsOpen(false)}><X size={15} /></button>
           </div>
 
