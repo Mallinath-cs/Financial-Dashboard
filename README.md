@@ -103,7 +103,7 @@ Housing · Food · Transportation · Utilities · Shopping · Entertainment · H
 
 | Dashboard | Transactions |
 |---|---|
-| ![Dashboard](https://github.com/user-attachments/assets/0d7b5e9e-6488-4511-b4bb-9185ff8fe64) | ![Transactions](https://github.com/user-attachments/assets/93ade85e-0fa6-4986-826d-7b09b1db7ab1) |
+| ![Dashboard](https://github.com/user-attachments/assets/0d7b5e9e-6488-4511-b4bb-9185ff8fe649) | ![Transactions](https://github.com/user-attachments/assets/93ade85e-0fa6-4986-826d-7b09b1db7ab1) |
 
 ---
 
