@@ -73,7 +73,7 @@ const TransactionList = ({ transactions, role, onEdit, onDelete }) => {
 
   return (
     <div className="transaction-list-wrapper">
-      <table className="transactions-table" data-testid="transaction-list">
+      <table className="transactions-table">
         <thead>
           <tr>
             <th>Date</th>
@@ -86,7 +86,7 @@ const TransactionList = ({ transactions, role, onEdit, onDelete }) => {
         </thead>
         <tbody>
           {paginated.map((transaction) => (
-            <tr key={transaction.id} data-testid="transaction-item">
+            <tr key={transaction.id} >
               <td data-label="Date">
                 {new Date(transaction.date).toLocaleDateString()}
               </td>
@@ -95,14 +95,13 @@ const TransactionList = ({ transactions, role, onEdit, onDelete }) => {
                 {transaction.description || '-'}
               </td>
               <td data-label="Type">
-                <Badge type={transaction.type} testId={`badge-${transaction.type}`}>
+                <Badge type={transaction.type}>
                   {transaction.type}
                 </Badge>
               </td>
               <td data-label="Amount">
                 <span
                   className={`amount-${transaction.type}`}
-                  data-testid="transaction-amount"
                 >
                   {transaction.type === 'income' ? '+' : '-'}
                   {formatCurrency(transaction.amount)}
@@ -114,7 +113,6 @@ const TransactionList = ({ transactions, role, onEdit, onDelete }) => {
                     <button
                       className="icon-button"
                       onClick={() => onEdit(transaction)}
-                      data-testid="edit-transaction-btn"
                       title="Edit"
                     >
                       <Edit2 size={16} />
@@ -122,7 +120,6 @@ const TransactionList = ({ transactions, role, onEdit, onDelete }) => {
                     <button
                       className="icon-button delete"
                       onClick={() => onDelete(transaction.id)}
-                      data-testid="delete-transaction-btn"
                       title="Delete"
                     >
                       <Trash2 size={16} />

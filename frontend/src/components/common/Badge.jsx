@@ -3,7 +3,7 @@ import '../../styles/Badge.css';
 
 const Badge = ({ type, children, testId }) => {
   return (
-    <span className={`badge badge-${type}`} data-testid={testId}>
+    <span className={`badge badge-${type}`}>
       {children}
     </span>
   );

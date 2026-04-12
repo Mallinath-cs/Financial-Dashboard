@@ -7,7 +7,7 @@ import '../../styles/SummaryCards.css';
 const SummaryCards = ({ insights }) => {
   return (
     <div className="summary-cards">
-      <Card testId="summary-total-balance">
+      <Card>
         <div className="card-header">
           <div className="card-icon balance">
             <DollarSign size={20} />
@@ -19,7 +19,7 @@ const SummaryCards = ({ insights }) => {
         </div>
       </Card>
 
-      <Card testId="summary-total-income">
+      <Card>
         <div className="card-header">
           <div className="card-icon income">
             <TrendingUp size={20} />

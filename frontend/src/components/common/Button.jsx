@@ -16,7 +16,6 @@ const Button = ({
       className={`button button-${variant} ${className}`}
       onClick={onClick}
       disabled={disabled}
-      data-testid={testId}
     >
       {children}
     </button>

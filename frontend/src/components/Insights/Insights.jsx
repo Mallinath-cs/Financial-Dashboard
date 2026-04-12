@@ -29,7 +29,7 @@ const Insights = ({ insights }) => {
         )}
 
         {insights.monthly_comparison && (
-          <div className="insight-card" data-testid="insight-monthly-comparison">
+          <div className="insight-card">
             <h3>
               <span className='trendup-icon'>
                 <TrendingUp size={20} />

@@ -6,7 +6,7 @@ A full-stack personal finance tracker built with the **MERN stack** that helps y
   <a href="https://financial-dashboard-hjyp.onrender.com/">Live Demo</a>
 </p>
 
-![Dashboard Preview](https://github.com/user-attachments/assets/65a3c728-929f-4774-9258-5b749adbf3e0)
+![Dashboard Preview](https://github.com/user-attachments/assets/0d7b5e9e-6488-4511-b4bb-9185ff8fe649)
 
 ---
 ## Features
@@ -103,7 +103,7 @@ Housing · Food · Transportation · Utilities · Shopping · Entertainment · H
 
 | Dashboard | Transactions |
 |---|---|
-| ![Dashboard](https://github.com/user-attachments/assets/65a3c728-929f-4774-9258-5b749adbf3e0) | ![Transactions](https://github.com/user-attachments/assets/c3cc60d8-6025-43ba-b4dc-7589ec9ec862) |
+| ![Dashboard](https://github.com/user-attachments/assets/0d7b5e9e-6488-4511-b4bb-9185ff8fe64) | ![Transactions](https://github.com/user-attachments/assets/93ade85e-0fa6-4986-826d-7b09b1db7ab1) |
 
 ---
 

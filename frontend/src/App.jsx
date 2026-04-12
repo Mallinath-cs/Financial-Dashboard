@@ -128,7 +128,7 @@ function App() {
   const categoryData = insights?.category_breakdown || [];
 
   return (
-    <div className="app-container" data-testid="app-container">
+    <div className="app-container">
       {/* Header */}
       <header className="app-header">
         <div className="header-icon-container">
@@ -136,9 +136,11 @@ function App() {
           <h1>Finora AI</h1>
         </div>
         <div className="header-right">
-          <div className="github-container">
-            <img src='./github_icon.png'/>
-          </div>
+          <a href="https://github.com/Mallinath-cs/Financial-Dashboard" target='_blank' rel='noopener' className='github-link'>
+            <div className="github-container">
+              <img src='./github_icon.png'/>
+            </div>
+          </a>
         <div className="dropdown" ref={dropdownRef}>
         <div
           className="dropdown-header"
@@ -174,7 +176,6 @@ function App() {
       {/* Charts Section */}
       {isEmpty ? (
         <EmptyState
-          testId="charts-empty-state"
           title="No data yet"
           description="Start by adding your first transaction to see visualizations"
           actionLabel={role === ROLES.ADMIN ? "Add First Transaction" : null}
@@ -238,7 +239,6 @@ function App() {
 
         {isEmpty ? (
           <EmptyState
-            testId="transactions-empty-state"
             title="No transactions yet"
             description="Add your first transaction to start tracking your finances"
             actionLabel={role === ROLES.ADMIN ? "Add Transaction" : null}

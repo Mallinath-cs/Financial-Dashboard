@@ -61,7 +61,6 @@ const TransactionModal = ({ isOpen, onClose, onSubmit, editingTransaction }) => 
                   value={formData.date}
                   onChange={(e) => handleChange('date', e.target.value)}
                   required
-                  data-testid="form-date-input"
                 />
                 <span className="date-icon">
                   <img src="/calendar.svg" alt="" />
@@ -77,7 +76,6 @@ const TransactionModal = ({ isOpen, onClose, onSubmit, editingTransaction }) => 
                 value={formData.type}
                 onChange={(e) => handleChange('type', e.target.value)}
                 required
-                data-testid="form-type-select"
               >
                 <option value={TRANSACTION_TYPES.EXPENSE}>Expense</option>
                 <option value={TRANSACTION_TYPES.INCOME}>Income</option>
@@ -95,7 +93,6 @@ const TransactionModal = ({ isOpen, onClose, onSubmit, editingTransaction }) => 
               value={formData.amount}
               onChange={(e) => handleChange('amount', e.target.value)}
               required
-              data-testid="form-amount-input"
               placeholder="0.00"
             />
           </div>
@@ -108,7 +105,6 @@ const TransactionModal = ({ isOpen, onClose, onSubmit, editingTransaction }) => 
                 value={formData.category}
                 onChange={(e) => handleChange('category', e.target.value)}
                 required
-                data-testid="form-category-select"
               >
                 {CATEGORIES.map((cat) => (
                   <option key={cat} value={cat}>
@@ -125,7 +121,6 @@ const TransactionModal = ({ isOpen, onClose, onSubmit, editingTransaction }) => 
               id="description"
               value={formData.description}
               onChange={(e) => handleChange('description', e.target.value)}
-              data-testid="form-description-input"
               placeholder="Add a note..."
               maxLength={25}
             />
@@ -137,14 +132,12 @@ const TransactionModal = ({ isOpen, onClose, onSubmit, editingTransaction }) => 
             type="button"
             variant="secondary"
             onClick={onClose}
-            testId="form-cancel-btn"
           >
             Cancel
           </Button>
           <Button
             type="submit"
             variant="primary"
-            testId="form-submit-btn"
           >
             {editingTransaction ? "Update" : "Add"} Transaction
           </Button>

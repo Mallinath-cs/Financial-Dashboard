@@ -5,7 +5,7 @@ import '../../styles/EmptyState.css';
 
 const EmptyState = ({ title, description, actionLabel, onAction, testId }) => {
   return (
-    <div className="empty-state" data-testid={testId}>
+    <div className="empty-state">
       <Inbox className="empty-state-icon" size={64} strokeWidth={1.5} />
       <h3>{title}</h3>
       <p>{description}</p>

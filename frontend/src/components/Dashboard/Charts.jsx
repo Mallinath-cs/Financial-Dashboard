@@ -197,13 +197,13 @@ const Charts = ({ transactions, categoryData, theme }) => {
 
   return (
     <div className="charts-container">
-      <div className="chart-card" data-testid="balance-trend-chart">
+      <div className="chart-card">
         <h2>Balance Trend</h2>
         <div style={{ height: "300px" }} className='balance-trend-box'>
           <Line data={lineChartData} options={lineChartOptions} />
         </div>
       </div>
-      <div className="chart-card" data-testid="spending-breakdown-chart">
+      <div className="chart-card">
         <h2>Spending by Category</h2>
         <div style={{ height: "300px" }} className='spending-breakdown-box'>
           {categoryData.length > 0 ? (

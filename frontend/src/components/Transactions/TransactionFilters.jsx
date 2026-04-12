@@ -53,7 +53,6 @@ const TransactionFilters = ({
           placeholder="Search by category or description"
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
-          data-testid="search-input"
         />
       </div>
       <div className="neo-dropdown" ref={dropdownRef}>
