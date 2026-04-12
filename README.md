@@ -81,6 +81,7 @@ Housing · Food · Transportation · Utilities · Shopping · Entertainment · H
    CORS_ORIGINS=your_localhost
    PORT=any_available ports
    NODE_ENV=development or production
+   OPENAI_API_KEY=your_open_router_api_key
    ```
 
 5. **Run the app**
